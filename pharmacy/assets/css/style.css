@@ -1,0 +1,3026 @@
+/* =========================================================================
+   style.css - PharmaCare custom styles (navy, blue and purple theme)
+
+   Bootstrap 5 does most of the styling. This file only adds:
+    1. Brand colours and font          8. Homepage: medicine cards
+    2. Base text and focus styles      9. Homepage: how it works
+    3. Buttons and form fields        10. Homepage: call to action
+    4. Navigation bar                 11. Content panels and error page
+    5. Order status badges            12. Footer
+    6. Homepage: hero                 13. Animation and reduced motion
+    7. Homepage: search and sections
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. Brand colours and font
+   Change a colour here and it changes across the whole site.
+   ------------------------------------------------------------------------- */
+:root {
+    --pms-navy-950: #060d1f;     /* darkest background */
+    --pms-navy-800: #0f2460;     /* deep blue */
+    --pms-indigo-900: #1a1a4e;   /* deep indigo */
+    --pms-blue: #2563eb;         /* main blue: links, prices */
+    --pms-blue-500: #3b82f6;     /* bright blue: highlights */
+    --pms-blue-300: #93c5fd;     /* light blue text on dark */
+    --pms-purple: #7c3aed;       /* purple end of the gradient */
+
+    --pms-ink: #0f172a;          /* main text */
+    --pms-muted: #475569;        /* secondary text */
+    --pms-paper: #f5f7fb;        /* page background */
+    --pms-line: #e2e8f0;         /* borders and dividers */
+    --pms-soft-blue: #eef3ff;    /* soft blue backgrounds */
+
+    /* Gradients used by buttons, logo, hero and footer */
+    --pms-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    --pms-gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
+    --pms-dark-gradient: linear-gradient(135deg, #060d1f 0%, #0f2460 50%, #1a1a4e 100%);
+
+    /* Tell Bootstrap to use our font and colours */
+    --bs-body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --bs-body-color: var(--pms-ink);
+    --bs-body-bg: var(--pms-paper);
+    --bs-emphasis-color: var(--pms-ink);
+    --bs-secondary-color: var(--pms-muted);
+    --bs-border-color: var(--pms-line);
+    --bs-primary: #2563eb;
+    --bs-primary-rgb: 37, 99, 235;
+    --bs-link-color: #2563eb;
+    --bs-link-color-rgb: 37, 99, 235;
+    --bs-link-hover-color: #1d4ed8;
+    --bs-link-hover-color-rgb: 29, 78, 216;
+}
+
+/* -------------------------------------------------------------------------
+   2. Base text and focus styles
+   ------------------------------------------------------------------------- */
+body {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--pms-ink);
+}
+
+/* A clear outline when moving through the page with the keyboard (Tab key). */
+:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.55);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 2000;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 2px solid var(--pms-blue);
+    border-radius: 8px;
+}
+
+/* -------------------------------------------------------------------------
+   3. Buttons and form fields
+   ------------------------------------------------------------------------- */
+.btn {
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+/* Main button: blue-to-purple gradient */
+.btn-primary {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: #2563eb;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #1d4ed8;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: #1e40af;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-bg: #94a3b8;
+    --bs-btn-disabled-border-color: transparent;
+    --bs-btn-focus-shadow-rgb: 59, 130, 246;
+    background-image: var(--pms-gradient);
+    box-shadow: 0 6px 18px -6px rgba(37, 99, 235, 0.55);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-image: var(--pms-gradient-hover);
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+    background-image: none;
+    box-shadow: none;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--pms-blue);
+    --bs-btn-border-color: var(--pms-blue);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: var(--pms-blue);
+    --bs-btn-hover-border-color: var(--pms-blue);
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: #1e40af;
+    --bs-btn-active-border-color: #1e40af;
+    --bs-btn-focus-shadow-rgb: 59, 130, 246;
+}
+
+/* See-through button for dark backgrounds (navbar, hero, call to action) */
+.btn-ghost-light {
+    --bs-btn-color: rgba(255, 255, 255, 0.92);
+    --bs-btn-bg: rgba(255, 255, 255, 0.08);
+    --bs-btn-border-color: rgba(255, 255, 255, 0.22);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: rgba(255, 255, 255, 0.16);
+    --bs-btn-hover-border-color: rgba(255, 255, 255, 0.38);
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: rgba(255, 255, 255, 0.2);
+    --bs-btn-active-border-color: rgba(255, 255, 255, 0.38);
+    --bs-btn-focus-shadow-rgb: 147, 197, 253;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--pms-blue-500);
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: var(--pms-blue);
+    border-color: var(--pms-blue);
+}
+
+/* -------------------------------------------------------------------------
+   4. Navigation bar (dark gradient)
+   ------------------------------------------------------------------------- */
+.navbar.pms-navbar {
+    --bs-navbar-color: rgba(255, 255, 255, 0.72);
+    --bs-navbar-hover-color: #ffffff;
+    --bs-navbar-active-color: #ffffff;
+    --bs-navbar-brand-color: #ffffff;
+    --bs-navbar-brand-hover-color: #ffffff;
+    --bs-navbar-nav-link-padding-x: 0.9rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    background: var(--pms-dark-gradient);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: box-shadow 0.2s ease;
+}
+
+/* main.js adds .is-scrolled once the page scrolls down. */
+.navbar.pms-navbar.is-scrolled {
+    box-shadow: 0 10px 28px rgba(6, 13, 31, 0.35);
+}
+
+.pms-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.pms-brand:hover,
+.pms-brand:focus {
+    color: #ffffff;
+}
+
+.brand-logo {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 11px;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.brand-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+.brand-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.pms-navbar .nav-link {
+    font-weight: 500;
+}
+
+/* Blue underline under the active link on large screens */
+@media (min-width: 992px) {
+    .pms-navbar .nav-link.active {
+        position: relative;
+    }
+
+    .pms-navbar .nav-link.active::after {
+        content: "";
+        position: absolute;
+        right: var(--bs-navbar-nav-link-padding-x);
+        bottom: 0.15rem;
+        left: var(--bs-navbar-nav-link-padding-x);
+        height: 2px;
+        background-color: var(--pms-blue-500);
+        border-radius: 2px;
+    }
+}
+
+.nav-user {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: rgba(255, 255, 255, 0.08);
+    --bs-btn-border-color: rgba(255, 255, 255, 0.14);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: rgba(255, 255, 255, 0.14);
+    --bs-btn-hover-border-color: rgba(255, 255, 255, 0.24);
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: rgba(255, 255, 255, 0.16);
+    --bs-btn-active-border-color: rgba(255, 255, 255, 0.24);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+    border-radius: 12px;
+}
+
+.nav-avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 9px;
+}
+
+.role-badge {
+    font-weight: 600;
+    color: #bfdbfe;
+    background-color: rgba(147, 197, 253, 0.16);
+}
+
+/* -------------------------------------------------------------------------
+   5. Order status badges (FR-32 colours, used on every order page)
+   ------------------------------------------------------------------------- */
+.status {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    border-radius: 999px;
+}
+
+.status-pending    { color: #92400e; background-color: #fef3c7; }   /* yellow */
+.status-confirmed  { color: #1e40af; background-color: #dbeafe; }   /* blue */
+.status-dispatched { color: #9a3412; background-color: #ffedd5; }   /* orange */
+.status-delivered  { color: #166534; background-color: #dcfce7; }   /* green */
+.status-cancelled  { color: #991b1b; background-color: #fee2e2; }   /* red */
+
+/* -------------------------------------------------------------------------
+   6. Homepage: hero (dark gradient with two soft glows)
+   ------------------------------------------------------------------------- */
+.home-hero {
+    position: relative;
+    padding: 4rem 0 7rem;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.72);
+    background: var(--pms-dark-gradient);
+}
+
+@media (min-width: 992px) {
+    .home-hero {
+        padding: 5.5rem 0 8.5rem;
+    }
+}
+
+.home-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-glow-blue {
+    top: -140px;
+    right: -100px;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.24), transparent 70%);
+}
+
+.hero-glow-purple {
+    bottom: -180px;
+    left: -140px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.18), transparent 70%);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 1.4rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pms-blue-300);
+    background-color: rgba(59, 130, 246, 0.14);
+    border: 1px solid rgba(59, 130, 246, 0.38);
+    border-radius: 999px;
+}
+
+.hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--pms-blue-500);
+    border-radius: 50%;
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.hero-title {
+    max-width: 15ch;
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.3rem, 1.3rem + 3.6vw, 3.9rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+/* Text filled with a light blue-to-purple gradient */
+.text-gradient {
+    color: transparent;
+    background-image: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.hero-lead {
+    max-width: 50ch;
+    margin-bottom: 2rem;
+    font-size: 1.12rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 0;
+    margin-top: 2.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-stat {
+    padding: 0 1rem;
+}
+
+.hero-stat:nth-child(odd) {
+    padding-left: 0;
+}
+
+.hero-stat:nth-child(even) {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 576px) {
+    .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-stat:nth-child(n + 2) {
+        padding-left: 1rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+.hero-stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.hero-stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* The see-through "scan complete" card on the right of the hero */
+.scan-card {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+}
+
+.scan-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scan-card-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    font-size: 1.35rem;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 12px;
+}
+
+.scan-card-title {
+    display: block;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.scan-card-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.scan-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.scan-line:last-child {
+    border-bottom: 0;
+}
+
+.scan-med {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.scan-med-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: var(--pms-blue-300);
+    background-color: rgba(96, 165, 250, 0.14);
+    border-radius: 10px;
+}
+
+.scan-med-icon-missing {
+    color: #fca5a5;
+    background-color: rgba(239, 68, 68, 0.14);
+}
+
+.scan-med-name {
+    display: block;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.scan-med-meta {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.scan-tag {
+    padding: 0.22rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+    border-radius: 999px;
+}
+
+.scan-tag-found {
+    color: #86efac;
+    background-color: rgba(34, 197, 94, 0.14);
+}
+
+.scan-tag-missing {
+    color: #fca5a5;
+    background-color: rgba(239, 68, 68, 0.14);
+}
+
+.scan-card-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    color: #bfdbfe;
+    background-color: rgba(59, 130, 246, 0.12);
+    border-radius: 12px;
+}
+
+/* -------------------------------------------------------------------------
+   7. Homepage: search and sections
+   ------------------------------------------------------------------------- */
+/* The white search card overlaps the bottom of the dark hero. */
+.home-search {
+    position: relative;
+    z-index: 2;
+    margin-top: -4.5rem;
+}
+
+.search-card {
+    padding: 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 18px;
+    box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.28);
+}
+
+@media (min-width: 992px) {
+    .search-card {
+        padding: 1.75rem 2rem;
+    }
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0.4rem 0.4rem 1.1rem;
+    background-color: var(--pms-paper);
+    border: 1.5px solid var(--pms-line);
+    border-radius: 14px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Highlight the whole box while typing (replaces the input's own outline). */
+.search-box:focus-within {
+    border-color: var(--pms-blue-500);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.search-box > i {
+    font-size: 1.15rem;
+    color: var(--pms-muted);
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0;
+    font-size: 1rem;
+    color: var(--pms-ink);
+    background: transparent;
+    border: 0;
+    outline: none;
+}
+
+.search-box .btn {
+    padding: 0.6rem 1.5rem;
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0.35rem 0.95rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--pms-muted);
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip:hover {
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-color: #bfdbfe;
+}
+
+.chip.active {
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-color: transparent;
+}
+
+.home-section {
+    padding: 4.5rem 0;
+}
+
+.section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.section-title-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    font-size: 1.1rem;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-radius: 10px;
+}
+
+.section-intro {
+    max-width: 56ch;
+    margin-bottom: 0;
+    color: var(--pms-muted);
+}
+
+.see-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.see-all:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   8. Homepage: medicine cards (app/views/partials/medicine_card.php)
+   ------------------------------------------------------------------------- */
+.med-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.med-card:hover {
+    border-color: var(--pms-blue-300);
+    box-shadow: 0 14px 30px -14px rgba(37, 99, 235, 0.3);
+    transform: translateY(-2px);
+}
+
+.med-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 120px;
+    font-size: 2.4rem;
+}
+
+.med-tone-1 { color: #1d4ed8; background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+.med-tone-2 { color: #6d28d9; background: linear-gradient(135deg, #faf5ff, #ede9fe); }
+.med-tone-3 { color: #0f766e; background: linear-gradient(135deg, #f0fdfa, #ccfbf1); }
+.med-tone-4 { color: #b45309; background: linear-gradient(135deg, #fffbeb, #fde68a); }
+
+.med-rank {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 999px;
+}
+
+.med-stock-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9a3412;
+    background-color: #ffedd5;
+    border-radius: 999px;
+}
+
+.med-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1rem 1.1rem 1.1rem;
+}
+
+.med-name {
+    margin-bottom: 0.2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.med-name a {
+    color: var(--pms-ink);
+    text-decoration: none;
+}
+
+.med-meta {
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    color: var(--pms-muted);
+}
+
+.med-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.med-price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+/* The Add form sits above the card-wide link so it stays clickable. */
+.med-add-form,
+.btn-out-of-stock {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-add {
+    padding: 0.4rem 0.95rem;
+    font-size: 0.88rem;
+}
+
+.btn-out-of-stock:disabled {
+    color: #991b1b;
+    background-color: #fee2e2;
+    border-color: transparent;
+    opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+   9. Homepage: how it works
+   ------------------------------------------------------------------------- */
+.step-card {
+    height: 100%;
+    padding: 1.75rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-bottom: 1.1rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 12px;
+    box-shadow: 0 8px 18px -8px rgba(37, 99, 235, 0.6);
+}
+
+.step-text {
+    margin-bottom: 0;
+    color: var(--pms-muted);
+}
+
+/* -------------------------------------------------------------------------
+   10. Homepage: call to action
+   ------------------------------------------------------------------------- */
+.home-cta {
+    padding: 0 0 4.5rem;
+}
+
+.cta-band {
+    position: relative;
+    padding: 2.75rem 1.75rem;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.72);
+    background: var(--pms-dark-gradient);
+    border-radius: 24px;
+}
+
+@media (min-width: 992px) {
+    .cta-band {
+        padding: 3.25rem 3.5rem;
+    }
+}
+
+.cta-glow {
+    position: absolute;
+    top: -160px;
+    right: -60px;
+    width: 460px;
+    height: 460px;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.28), transparent 70%);
+    border-radius: 50%;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-title {
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem);
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* -------------------------------------------------------------------------
+   11. Content panels and error page
+   ------------------------------------------------------------------------- */
+.content-panel {
+    max-width: 580px;
+    padding: 2rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.row .content-panel {
+    max-width: none;   /* panels inside grid columns use the full column width */
+}
+
+.error-code {
+    font-weight: 700;
+    color: var(--pms-blue);
+}
+
+/* -------------------------------------------------------------------------
+   12. Footer (dark gradient)
+   ------------------------------------------------------------------------- */
+.pms-footer {
+    color: rgba(255, 255, 255, 0.62);
+    background: linear-gradient(135deg, #060d1f 0%, #0a1628 100%);
+}
+
+.footer-about {
+    max-width: 40ch;
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.footer-heading {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer-links,
+.footer-info {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links li,
+.footer-info li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.58);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-info li {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.footer-info i {
+    color: var(--pms-blue-300);
+}
+
+.footer-bottom {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.45);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+}
+
+/* -------------------------------------------------------------------------
+   13. Animation and reduced motion
+   When the homepage loads, a blue scan line moves down the scan card once
+   and the results appear one by one. The badge dot pulses gently.
+   ------------------------------------------------------------------------- */
+.scan-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 64px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0) 0%, rgba(59, 130, 246, 0.16) 80%, rgba(147, 197, 253, 0.8) 100%);
+    animation: scan-beam 1.6s ease-in-out 0.3s both;
+}
+
+.scan-tag {
+    animation: tag-pop 0.35s ease-out both;
+}
+
+.scan-line:nth-child(1) .scan-tag { animation-delay: 0.9s; }
+.scan-line:nth-child(2) .scan-tag { animation-delay: 1.2s; }
+.scan-line:nth-child(3) .scan-tag { animation-delay: 1.5s; }
+
+@keyframes scan-beam {
+    from { transform: translateY(-70px); opacity: 1; }
+    85%  { opacity: 1; }
+    to   { transform: translateY(420px); opacity: 0; }
+}
+
+@keyframes tag-pop {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+/* Respect users who have asked their device for less animation. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .scan-tag,
+    .hero-badge-dot {
+        animation: none !important;
+    }
+
+    .scan-card::after {
+        display: none;
+    }
+
+    .med-card:hover {
+        transform: none;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   14. Login, registration and password pages (Phase 2)
+   A white card in the middle of a dark gradient background.
+   ------------------------------------------------------------------------- */
+.auth-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 68px);
+    padding: 3rem 1rem;
+    overflow: hidden;
+    background: var(--pms-dark-gradient);
+}
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    padding: 2rem 1.5rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+.auth-card-wide {
+    max-width: 580px;
+}
+
+@media (min-width: 576px) {
+    .auth-card {
+        padding: 2.5rem 2.25rem;
+    }
+}
+
+.auth-head {
+    margin-bottom: 1.75rem;
+    text-align: center;
+}
+
+.auth-logo {
+    display: inline-grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px -8px rgba(37, 99, 235, 0.6);
+}
+
+.auth-title {
+    margin-bottom: 0.35rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.auth-sub {
+    margin-bottom: 0;
+    color: var(--pms-muted);
+}
+
+.auth-card .form-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.auth-card .form-control {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+}
+
+/* Bootstrap draws a red icon inside invalid fields; it would cover the eye button. */
+.auth-card .form-control.is-invalid {
+    background-image: none;
+}
+
+/* A text field with an icon on the left */
+.input-icon {
+    position: relative;
+}
+
+.input-icon > i {
+    position: absolute;
+    top: 50%;
+    left: 0.95rem;
+    color: var(--pms-muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.input-icon .form-control {
+    padding-left: 2.6rem;
+}
+
+/* The eye button that shows or hides a password (see main.js) */
+.input-icon .form-control.has-toggle {
+    padding-right: 3rem;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.4rem;
+    display: grid;
+    place-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    color: var(--pms-muted);
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+}
+
+.form-hint {
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+}
+
+.auth-link {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--pms-line);
+}
+
+/* Light button, used for "Browse medicines without an account" */
+.btn-soft {
+    --bs-btn-color: var(--pms-ink);
+    --bs-btn-bg: var(--pms-paper);
+    --bs-btn-border-color: var(--pms-line);
+    --bs-btn-hover-color: var(--pms-blue);
+    --bs-btn-hover-bg: var(--pms-soft-blue);
+    --bs-btn-hover-border-color: #bfdbfe;
+    --bs-btn-active-color: var(--pms-blue);
+    --bs-btn-active-bg: var(--pms-soft-blue);
+    --bs-btn-active-border-color: #bfdbfe;
+}
+
+.auth-footer {
+    margin: 1.5rem 0 0;
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--pms-muted);
+}
+
+/* The reset link shown on screen in development mode can be very long. */
+.dev-link-box {
+    word-break: break-all;
+}
+
+/* -------------------------------------------------------------------------
+   15. Dashboards (Phase 2 starter versions)
+   ------------------------------------------------------------------------- */
+.dashboard-hero {
+    position: relative;
+    padding: 3rem 0 3.5rem;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.72);
+    background: var(--pms-dark-gradient);
+}
+
+.dashboard-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-title {
+    margin-bottom: 0.4rem;
+    font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.5rem);
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 1.25rem;
+    color: var(--pms-ink);
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-link:hover {
+    color: var(--pms-ink);
+    border-color: var(--pms-blue-300);
+    box-shadow: 0 12px 26px -14px rgba(37, 99, 235, 0.35);
+}
+
+.quick-link-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.35rem;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-radius: 12px;
+}
+
+.quick-link-title {
+    display: block;
+    font-weight: 700;
+}
+
+.quick-link-text {
+    font-size: 0.9rem;
+    color: var(--pms-muted);
+}
+
+/* -------------------------------------------------------------------------
+   16. Flash messages
+   When the last message is closed, hide its empty box so no white gap is left.
+   ------------------------------------------------------------------------- */
+.flash-area:not(:has(.alert)) {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------
+   17. Page heading strip (profile, and inner pages from Phase 4)
+   ------------------------------------------------------------------------- */
+.page-head {
+    padding: 2rem 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--pms-line);
+}
+
+.profile-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.profile-avatar {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 50%;
+    box-shadow: 0 10px 24px -10px rgba(37, 99, 235, 0.7);
+}
+
+/* The role badge on a light background (the navbar one is for dark) */
+.role-badge-light {
+    font-weight: 600;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+}
+
+/* -------------------------------------------------------------------------
+   18. Settings cards (profile forms)
+   ------------------------------------------------------------------------- */
+.settings-card {
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+@media (min-width: 576px) {
+    .settings-card {
+        padding: 2rem;
+    }
+}
+
+.settings-card .form-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.settings-card .form-control {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+}
+
+/* Bootstrap draws a red icon inside invalid fields; it would cover the eye button. */
+.settings-card .form-control.is-invalid {
+    background-image: none;
+}
+
+/* A read-only list of account facts: label above, value below */
+.info-list {
+    margin: 0;
+}
+
+.info-list > div + div {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--pms-line);
+}
+
+.info-list dt {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pms-muted);
+}
+
+.info-list dd {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   19. Catalogue page (Phase 4)
+   ------------------------------------------------------------------------- */
+.result-count {
+    color: var(--pms-muted);
+}
+
+/* Shown when a search matches nothing */
+.empty-state {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.empty-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-radius: 50%;
+}
+
+/* The category badge on a medicine card */
+.cat-badge {
+    font-weight: 500;
+    color: var(--pms-muted);
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+}
+
+/* -------------------------------------------------------------------------
+   20. Medicine details page (Phase 4)
+   ------------------------------------------------------------------------- */
+.breadcrumb-bar {
+    padding: 0.9rem 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--pms-line);
+}
+
+.breadcrumb-bar .breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb-bar a {
+    color: var(--pms-muted);
+    text-decoration: none;
+}
+
+.breadcrumb-bar a:hover {
+    color: var(--pms-blue);
+}
+
+/* The large coloured square that stands in for a product photo */
+.detail-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    font-size: 6rem;
+    border-radius: 20px;
+}
+
+.detail-flag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 999px;
+}
+
+.flag-out {
+    color: #991b1b;
+    background-color: #fee2e2;
+}
+
+.flag-low {
+    color: #9a3412;
+    background-color: #ffedd5;
+}
+
+.detail-title {
+    margin-bottom: 0.4rem;
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.detail-maker {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--pms-muted);
+}
+
+.detail-price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 14px;
+}
+
+.detail-price {
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--pms-blue);
+}
+
+.stock-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+}
+
+.stock-in   { color: #15803d; }
+.stock-low  { color: #b45309; }
+.stock-out  { color: #b91c1c; }
+
+.quantity-input {
+    width: 6rem;
+    text-align: center;
+}
+
+.detail-description {
+    max-width: 60ch;
+    color: var(--pms-muted);
+}
+
+/* Product facts: two columns on wider screens */
+.detail-facts {
+    display: grid;
+    gap: 0;
+    margin: 1rem 0 0;
+    border: 1px solid var(--pms-line);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+@media (min-width: 576px) {
+    .detail-facts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.detail-facts > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.1rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--pms-line);
+}
+
+.detail-facts dt {
+    font-weight: 500;
+    color: var(--pms-muted);
+}
+
+.detail-facts dd {
+    margin-bottom: 0;
+    font-weight: 700;
+    text-align: right;
+}
+
+.detail-note {
+    display: flex;
+    gap: 0.6rem;
+    margin: 1.5rem 0 0;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.92rem;
+    color: var(--pms-muted);
+    background-color: var(--pms-soft-blue);
+    border-radius: 12px;
+}
+
+.detail-note i {
+    color: var(--pms-blue);
+}
+
+/* Results fade slightly while a live search is running (see main.js) */
+#catalogueResults {
+    transition: opacity 0.15s ease;
+}
+
+#catalogueResults.is-loading {
+    opacity: 0.45;
+}
+
+/* -------------------------------------------------------------------------
+   21. Cart page (Phase 5)
+   ------------------------------------------------------------------------- */
+.cart-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+/* A line that cannot be ordered as it is */
+.cart-line.has-problem {
+    border-color: #fca5a5;
+    background-color: #fffbfb;
+}
+
+.cart-thumb {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
+    border-radius: 12px;
+}
+
+.cart-info {
+    flex: 1 1 12rem;
+    min-width: 0;
+}
+
+.cart-name {
+    margin-bottom: 0.15rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.cart-name a {
+    color: var(--pms-ink);
+    text-decoration: none;
+}
+
+.cart-name a:hover {
+    color: var(--pms-blue);
+}
+
+.cart-meta {
+    font-size: 0.88rem;
+    color: var(--pms-muted);
+}
+
+.cart-warning {
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #b91c1c;
+}
+
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    margin-left: auto;
+}
+
+.cart-subtotal {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+/* A plain text button, so "Remove" does not compete with the real buttons */
+.btn-remove {
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+    background: none;
+    border: 0;
+}
+
+.btn-remove:hover {
+    color: #b91c1c;
+}
+
+/* -------------------------------------------------------------------------
+   22. Order summary panel (cart, checkout and confirmation)
+   ------------------------------------------------------------------------- */
+.summary-card {
+    position: sticky;
+    top: 5.5rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.summary-list {
+    margin: 0 0 1rem;
+}
+
+.summary-list > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.4rem 0;
+}
+
+.summary-list dt {
+    font-weight: 500;
+    color: var(--pms-muted);
+}
+
+.summary-list dd {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border-top: 2px solid var(--pms-line);
+}
+
+.summary-total span:last-child {
+    font-size: 1.5rem;
+    color: var(--pms-blue);
+}
+
+.summary-note {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 0.88rem;
+    color: var(--pms-muted);
+    border-top: 1px solid var(--pms-line);
+}
+
+.summary-note i {
+    color: var(--pms-blue);
+}
+
+/* The list of medicines in an order */
+.order-lines {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.order-lines li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed var(--pms-line);
+}
+
+.order-lines li:last-child {
+    border-bottom: 0;
+}
+
+.order-line-qty {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--pms-muted);
+}
+
+.order-line-name {
+    flex: 1;
+    min-width: 0;
+}
+
+.order-line-price {
+    flex-shrink: 0;
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   23. Checkout payment option (Phase 5)
+   ------------------------------------------------------------------------- */
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    background-color: var(--pms-soft-blue);
+    border: 2px solid var(--pms-blue);
+    border-radius: 14px;
+}
+
+.payment-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.3rem;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 10px;
+}
+
+.payment-check {
+    margin-left: auto;
+    font-size: 1.3rem;
+    color: var(--pms-blue);
+}
+
+/* -------------------------------------------------------------------------
+   24. Order confirmation (Phase 5)
+   ------------------------------------------------------------------------- */
+.confirm-card {
+    max-width: 640px;
+    padding: 2rem 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 20px;
+}
+
+@media (min-width: 576px) {
+    .confirm-card {
+        padding: 2.5rem;
+    }
+}
+
+.confirm-head {
+    padding-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--pms-line);
+}
+
+.confirm-tick {
+    display: inline-grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 2.25rem;
+    color: #ffffff;
+    background-color: #16a34a;
+    border-radius: 50%;
+    box-shadow: 0 12px 28px -12px rgba(22, 163, 74, 0.8);
+}
+
+.confirm-id {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-top: 1.5rem;
+    padding: 0.9rem 1.15rem;
+    background-color: var(--pms-soft-blue);
+    border-radius: 12px;
+}
+
+.confirm-id strong {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+.confirm-note {
+    margin-top: 1.5rem;
+    padding: 1.15rem;
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+    border-radius: 14px;
+}
+
+/* -------------------------------------------------------------------------
+   25. Cart count badge in the navigation bar (Phase 5)
+   ------------------------------------------------------------------------- */
+.nav-cart {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -0.35rem;
+    right: -0.55rem;
+    min-width: 1.15rem;
+    padding: 0 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1.15rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: #dc2626;
+    border-radius: 999px;
+}
+
+/* -------------------------------------------------------------------------
+   26. Order history and details (Phase 6)
+   ------------------------------------------------------------------------- */
+.order-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-row:hover {
+    border-color: var(--pms-blue-300);
+    box-shadow: 0 12px 26px -16px rgba(37, 99, 235, 0.3);
+}
+
+.order-main {
+    flex: 1 1 16rem;
+    min-width: 0;
+}
+
+/* The order number and its status badge, side by side */
+.order-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+}
+
+.order-number {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.order-meta {
+    font-size: 0.9rem;
+    color: var(--pms-muted);
+}
+
+.order-cancel-reason {
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    color: #b91c1c;
+}
+
+.order-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+    margin-left: auto;
+}
+
+.order-total {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+/* Status badges carry an icon, so they line their contents up */
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* One medicine inside the order details page */
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px dashed var(--pms-line);
+}
+
+.detail-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.detail-item .cart-subtotal {
+    margin-left: auto;
+}
+
+/* Shown instead of the progress steps when an order was cancelled */
+.cancelled-note {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.15rem;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+}
+
+.cancelled-note > i {
+    font-size: 1.25rem;
+    color: #b91c1c;
+}
+
+/* -------------------------------------------------------------------------
+   27. Recent orders on the customer dashboard (Phase 6)
+   ------------------------------------------------------------------------- */
+.dashboard-section {
+    margin-top: 3rem;
+}
+
+.dashboard-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.mini-order {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--pms-ink);
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.mini-order:hover {
+    color: var(--pms-ink);
+    border-color: var(--pms-blue-300);
+}
+
+.mini-order-number {
+    font-weight: 800;
+}
+
+.mini-order-meta {
+    font-size: 0.88rem;
+    color: var(--pms-muted);
+}
+
+.mini-order-total {
+    margin-left: auto;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+/* =========================================================================
+   ADMIN PANEL (Phase 7)
+   A dark sidebar on the left, and the page content on the right.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   28. Admin layout
+   ------------------------------------------------------------------------- */
+.admin-body {
+    min-height: 100vh;
+    background-color: var(--pms-paper);
+}
+
+.admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    color: rgba(255, 255, 255, 0.72);
+    background: var(--pms-dark-gradient);
+}
+
+/* From large screens up the sidebar is always there, fixed to the left edge. */
+@media (min-width: 992px) {
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .admin-main {
+        margin-left: 260px;
+    }
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-nav {
+    flex: 1;
+    padding: 1rem 0.75rem;
+    overflow-y: auto;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.15rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.admin-nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-nav-link.active {
+    font-weight: 700;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+}
+
+.admin-nav-link i {
+    width: 1.2rem;
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+/* The "3 new" badge next to Orders (FR-29) */
+.admin-nav-badge {
+    margin-left: auto;
+    padding: 0.05rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    white-space: nowrap;
+    color: #3d2c00;
+    background-color: #f0b429;
+    border-radius: 999px;
+}
+
+.admin-sidebar-foot {
+    padding: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* -------------------------------------------------------------------------
+   29. Admin top bar and content area
+   ------------------------------------------------------------------------- */
+.admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--pms-line);
+}
+
+@media (min-width: 992px) {
+    .admin-topbar {
+        padding: 0.85rem 2rem;
+    }
+}
+
+.admin-page-title {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.admin-menu-button {
+    --bs-btn-color: var(--pms-ink);
+    --bs-btn-border-color: var(--pms-line);
+    --bs-btn-hover-bg: var(--pms-soft-blue);
+    --bs-btn-hover-border-color: var(--pms-blue-300);
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+/* The admin top bar is light, so the user button needs light-background colours. */
+.admin-topbar .nav-user {
+    --bs-btn-color: var(--pms-ink);
+    --bs-btn-bg: #ffffff;
+    --bs-btn-border-color: var(--pms-line);
+    --bs-btn-hover-color: var(--pms-ink);
+    --bs-btn-hover-bg: var(--pms-paper);
+    --bs-btn-hover-border-color: var(--pms-line);
+    --bs-btn-active-color: var(--pms-ink);
+    --bs-btn-active-bg: var(--pms-paper);
+}
+
+.admin-topbar .role-badge {
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+}
+
+.admin-content {
+    padding: 1.5rem 1.25rem 3rem;
+}
+
+@media (min-width: 992px) {
+    .admin-content {
+        padding: 2rem 2rem 4rem;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   30. Admin cards, metrics and tables
+   ------------------------------------------------------------------------- */
+.admin-card {
+    padding: 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.admin-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.admin-card-title {
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* One number on the dashboard (FR-57) */
+.metric-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 1.15rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.metric-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    border-radius: 12px;
+}
+
+.metric-icon-blue   { color: #1d4ed8; background-color: #dbeafe; }
+.metric-icon-amber  { color: #b45309; background-color: #fef3c7; }
+.metric-icon-green  { color: #15803d; background-color: #dcfce7; }
+.metric-icon-red    { color: #b91c1c; background-color: #fee2e2; }
+.metric-icon-purple { color: #6d28d9; background-color: #ede9fe; }
+
+.metric-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Tables inside admin cards */
+.admin-table {
+    --bs-table-bg: transparent;
+    margin-bottom: 0;
+}
+
+.admin-table thead th {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--pms-muted);
+    border-bottom: 2px solid var(--pms-line);
+}
+
+.admin-table td {
+    vertical-align: middle;
+}
+
+.admin-table .table-actions {
+    display: flex;
+    gap: 0.35rem;
+    justify-content: flex-end;
+}
+
+/* Rows that need attention (low stock, expiring soon) */
+.row-low td {
+    background-color: #fff7ed;
+}
+
+.row-expiring td {
+    background-color: #fef2f2;
+}
+
+/* DataTables controls, tuned to match the rest of the design */
+.dt-container .form-control,
+.dt-container .form-select {
+    border-radius: 8px;
+}
+
+.dt-container .dt-search {
+    margin-bottom: 0.75rem;
+}
+
+.dt-container .dt-info,
+.dt-container .dt-length {
+    font-size: 0.88rem;
+    color: var(--pms-muted);
+}
+
+.dt-container .pagination {
+    margin-bottom: 0;
+}
+
+.page-link {
+    color: var(--pms-blue);
+}
+
+.page-item.active .page-link {
+    background-color: var(--pms-blue);
+    border-color: var(--pms-blue);
+}
+
+/* The FIFO position of a batch (Phase 7) */
+.fifo-pill {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-radius: 999px;
+}
+
+/* The per-status counters above the admin order list (Phase 7) */
+.status-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.status-count {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 12px;
+}
+
+.status-count-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+/* One row of the audit log (Phase 7) */
+.log-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.log-icon {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+}
+
+/* -------------------------------------------------------------------------
+   31. Trending medicines (Phase 9)
+   ------------------------------------------------------------------------- */
+
+/* The position number of a medicine in the ranking */
+.rank-pill {
+    display: inline-grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 50%;
+}
+
+/* A simple bar chart drawn with CSS widths, no chart library needed */
+.trend-bar-row {
+    margin-bottom: 1rem;
+}
+
+.trend-bar-row:last-child {
+    margin-bottom: 0;
+}
+
+.trend-bar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.trend-bar-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.trend-bar-value {
+    flex-shrink: 0;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+.trend-bar-track {
+    height: 0.6rem;
+    background-color: var(--pms-paper);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.trend-bar-fill {
+    display: block;
+    height: 100%;
+    background-image: var(--pms-gradient);
+    border-radius: 999px;
+}
+
+/* Month-on-month change (FR-47) */
+.trend-up {
+    font-weight: 700;
+    color: #15803d;
+}
+
+.trend-down {
+    font-weight: 700;
+    color: #b91c1c;
+}
+
+.trend-new {
+    padding: 0.1rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--pms-blue);
+    background-color: var(--pms-soft-blue);
+    border-radius: 999px;
+}
+
+/* -------------------------------------------------------------------------
+   32. Reports on screen (Phase 10)
+   The PDF version has its own styles inside report_pdf.php, because Dompdf
+   only understands basic CSS.
+   ------------------------------------------------------------------------- */
+.report-screen h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.report-screen h3:first-child {
+    margin-top: 0;
+}
+
+.report-summary {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border-collapse: separate;
+    border-spacing: 0.5rem 0;
+}
+
+.report-summary td {
+    padding: 0.9rem 1.1rem;
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+    border-radius: 12px;
+}
+
+.report-summary .label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--pms-muted);
+}
+
+.report-summary .value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--pms-blue);
+}
+
+.report-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.report-table th,
+.report-table td {
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--pms-line);
+    text-align: left;
+}
+
+.report-table th {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--pms-muted);
+    border-bottom: 2px solid var(--pms-line);
+}
+
+.report-table .num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.report-table tfoot td {
+    font-weight: 800;
+    background-color: var(--pms-paper);
+}
+
+.report-table tr.warn td {
+    background-color: #fff7ed;
+}
+
+.report-table tr.danger td {
+    background-color: #fef2f2;
+}
+
+.capitalise {
+    text-transform: capitalize;
+}
+
+.report-screen .muted {
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+}
+
+/* Tables can be wide, so they scroll sideways instead of breaking the page */
+.report-screen {
+    overflow-x: auto;
+}
+
+/* =========================================================================
+   AI PRESCRIPTION OCR (Phase 11)
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   33. Upload page
+   ------------------------------------------------------------------------- */
+.upload-drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 2.25rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--pms-paper);
+    border: 2px dashed var(--pms-blue-300);
+    border-radius: 16px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.upload-drop:hover {
+    background-color: var(--pms-soft-blue);
+    border-color: var(--pms-blue);
+}
+
+.upload-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    color: #ffffff;
+    background-image: var(--pms-gradient);
+    border-radius: 50%;
+}
+
+.upload-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.upload-text {
+    font-size: 0.9rem;
+    color: var(--pms-muted);
+}
+
+.upload-drop .form-control {
+    max-width: 22rem;
+}
+
+.tip-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tip-list li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--pms-line);
+}
+
+.tip-list li:last-child {
+    border-bottom: 0;
+}
+
+.tip-list i {
+    flex-shrink: 0;
+    color: var(--pms-blue);
+}
+
+/* -------------------------------------------------------------------------
+   34. Review page
+   ------------------------------------------------------------------------- */
+.rx-photo {
+    display: block;
+    width: 100%;
+    max-height: 26rem;
+    object-fit: contain;
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+    border-radius: 12px;
+}
+
+.rx-text {
+    max-height: 16rem;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    overflow: auto;
+    font-size: 0.88rem;
+    white-space: pre-wrap;
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+    border-radius: 10px;
+}
+
+/* Overall reading quality (FR-12) */
+.conf-meter {
+    height: 0.5rem;
+    background-color: var(--pms-paper);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.conf-meter span {
+    display: block;
+    height: 100%;
+    background-image: var(--pms-gradient);
+    border-radius: 999px;
+}
+
+/* One matched medicine */
+.rx-match {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--pms-line);
+    border-radius: 14px;
+}
+
+.rx-match.is-out {
+    background-color: #fffbfb;
+}
+
+.rx-check {
+    flex-shrink: 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0;
+}
+
+.rx-match-info {
+    flex: 1 1 12rem;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.rx-match-name {
+    display: block;
+    font-weight: 700;
+}
+
+.rx-match-meta {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--pms-muted);
+}
+
+.rx-match-warning {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b91c1c;
+}
+
+.rx-match-added {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    color: #15803d;
+}
+
+/* How sure the match is (FR-14) */
+.conf-badge {
+    flex-shrink: 0;
+    min-width: 5.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.conf-badge-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.conf-high {
+    color: #15803d;
+    background-color: #dcfce7;
+}
+
+.conf-mid {
+    color: #a16207;
+    background-color: #fef9c3;
+}
+
+.conf-low {
+    color: #c2410c;
+    background-color: #ffedd5;
+}
+
+/* Lines that could not be matched */
+.rx-missing {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rx-missing li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed var(--pms-line);
+}
+
+.rx-missing li:last-child {
+    border-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
+   35. Prescription history
+   ------------------------------------------------------------------------- */
+.rx-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border: 1px solid var(--pms-line);
+    border-radius: 16px;
+}
+
+.rx-thumb {
+    flex-shrink: 0;
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+    background-color: var(--pms-paper);
+    border: 1px solid var(--pms-line);
+    border-radius: 12px;
+}
+
+.rx-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rx-row-main {
+    flex: 1 1 14rem;
+    min-width: 0;
+}
+
+.rx-added {
+    font-size: 0.88rem;
+    color: #15803d;
+}
+
+/* -------------------------------------------------------------------------
+   36. The Manrope font, from a local copy (Phase 12)
+   Loaded from assets/vendor instead of Google Fonts, so the site looks the
+   same with no internet connection. font-display: swap shows text in a
+   system font at once, then switches when Manrope has loaded.
+   ------------------------------------------------------------------------- */
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../vendor/manrope/manrope-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../vendor/manrope/manrope-500.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../vendor/manrope/manrope-600.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../vendor/manrope/manrope-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("../vendor/manrope/manrope-800.woff2") format("woff2");
+}
+/* ==========================================================================
+   37. RESPONSIVE POLISH (Phase 12)
+   --------------------------------------------------------------------------
+   Bootstrap 5 already handles most of the layout on small screens.
+   This section fixes the three places that still needed attention:
+   wide admin tables, cramped page headings, and iPhone input zoom.
+   ========================================================================== */
+
+/* --- 37.1  Never let the whole page scroll sideways ---------------------
+   If one wide element (usually a table) sticks out, the entire page starts
+   sliding left and right, which feels broken. We stop that here, and give
+   the wide element its own scrollbar in 37.2 instead. */
+html,
+body {
+    overflow-x: hidden;
+}
+
+/* --- 37.2  Admin tables scroll inside their own box --------------------
+   DataTables creates a wrapper div around every admin table. We let that
+   wrapper scroll horizontally and give the table a minimum width, so the
+   columns stay readable instead of being squashed into nothing. */
+.dataTables_wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* smooth finger scrolling on iOS */
+}
+
+@media (max-width: 991.98px) {
+    table.dataTable,
+    .table-responsive > .table {
+        min-width: 640px;
+    }
+}
+
+/* --- 37.3  DataTables controls stack on small screens -----------------
+   The search box and the "Show 10 entries" dropdown sit side by side on a
+   laptop. On a phone they need a full line each. */
+@media (max-width: 575.98px) {
+    .dataTables_length,
+    .dataTables_filter,
+    .dataTables_info,
+    .dataTables_paginate {
+        float: none !important;
+        width: 100%;
+        text-align: left !important;
+        margin-bottom: 0.75rem;
+    }
+
+    .dataTables_filter input {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* --- 37.4  Page headings stack above their buttons --------------------
+   Admin pages have a heading on the left and an action button on the right.
+   Below 576px we put the button on its own line and stretch it full width,
+   which is much easier to tap. */
+@media (max-width: 575.98px) {
+    .page-head {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.75rem;
+    }
+
+    .page-head .btn {
+        width: 100%;
+    }
+}
+
+/* --- 37.5  Stop iOS from zooming when a field is focused -------------
+   Safari on iPhone zooms in automatically if an input's font size is
+   smaller than 16px. Setting it to exactly 16px prevents that. */
+@media (max-width: 767.98px) {
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+}
+
+/* --- 37.6  Slightly smaller headings on phones -----------------------
+   Our desktop hero text is large on purpose. On a narrow screen the same
+   size wraps into too many lines, so we scale it down. */
+@media (max-width: 575.98px) {
+    .hero h1,
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    h1, .h1 { font-size: 1.6rem; }
+    h2, .h2 { font-size: 1.35rem; }
+    h3, .h3 { font-size: 1.2rem; }
+}
+
+/* --- 37.7  Long text never breaks the layout -------------------------
+   Email addresses and file names have no spaces, so they cannot wrap
+   normally. This lets the browser break them anywhere if it has to. */
+.text-break,
+td .small,
+.audit-detail {
+    overflow-wrap: anywhere;
+}
+
+/* --- 37.8  Bigger tap targets in dropdowns and pagination ------------
+   A finger needs roughly 44px of height to tap comfortably. */
+@media (max-width: 767.98px) {
+    .dropdown-item {
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .page-link {
+        padding: 0.55rem 0.85rem;
+    }
+}
+
+/* --- 37.9  Footer reads better centred on a phone -------------------- */
+@media (max-width: 575.98px) {
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer-bottom .d-flex {
+        justify-content: center;
+    }
+}

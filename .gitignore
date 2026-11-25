@@ -1,0 +1,19 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime storage and uploads
+pms_storage/
+pharmacy/pms_storage/
+*.log
+
+# PHP and IDE
+/vendor/
+.idea/
+.vscode/
+*.cache
+
+# OS files
+Thumbs.db
+.DS_Store

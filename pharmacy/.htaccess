@@ -1,0 +1,7 @@
+# Do not show a list of files when someone opens a folder in the browser.
+Options -Indexes
+
+# Block hidden files that start with a dot, such as .env (passwords) and .gitkeep.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
